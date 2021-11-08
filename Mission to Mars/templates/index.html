@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Mission to Mars</title>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+      crossorigin="anonymous"
+    />
+
+  </head>
+
+  <!-- Create Container -->
+  <body>
+    <div class="container">
+        
+        <div class="jumbotron text-center" style="background-color: rgb(211, 180, 206);" >
+        
+          <h1 class="display-4" style="color: white">Mission to Mars</h1>
+          <!-- Add Button with link to mars_app -->
+          <a class="btn btn-lg text-white" style="background-color:grey; color: white" href="/scrape" role="button">Scrape Mars Data</a>
+        </div>
+
+      <!-- Add Recent News -->
+      <div class="row">
+        <div class="col-md-12">
+          <div class="media">
+            <div class="media-body">
+              <h2 style="color: rgb(201, 26, 26)"><b>Most Recent Mars News</b></h2>
+              <h4 class="media-heading" style="color: rgb(104, 29, 29)"><b>{{mars.latest_news_title}}</b></h4>
+              <h5 style="color: rgb(90, 25, 25)"><p>{{mars.news_paragraph}}</p></h5>
+              <p> </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mars Featured Image -->
+      <div class="row">
+        <div class="col-md-8">
+          <h2 style="color: rgb(201, 26, 26)">Featured Mars Image</h2>
+            <img src="{{mars.featured_image_url}}" class="img-responsive">
+        </div>
+        
+        <!-- Mars HTML Facts Table - used safe to show table data -->
+        <div class="col-lg-3">
+          <div class="row">
+            <h2 style="color: rgb(201, 26, 26)"> Mars Facts</h2>
+            <div class="col-md-12" style="margin-top: 10px;">
+              {{mars.mars_facts | safe}}
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Mars Hemispheres images -->
+      <div class="row" style="margin-top: 50px;">
+        <div class="page-header">
+          <h2 class="text-center" style="color: rgb(201, 26, 26)"><b>Mars Hemispheres</b></h2>
+        </div>
+        {% for img in mars.mars_hemispheres_urls %}
+          <div class="col-md-3">
+            <div class="thumbnail">
+              <img src="{{img.img_url}}">
+              <div class="caption">
+                <h4><b>{{img.title}}</b></h4>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+        <!-- #<div class="page-header"> -->
+        <!-- # <h3 class="text-center" style="color: rgb(97, 22, 22)"><b>END Hemispheres gla</b></h3> -->
+        <!-- #</div> -->
+    </div>
+ 
+  </body>
+  </html>
